@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.lead | default: site.description | escape }}">
+  <meta name="theme-color" content="#101942">
+  <title>{{ page.title | replace: '<br>', ' ' | strip_html | escape }} · Pit Wall</title>
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="topbar">
+  <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">//</span> PIT WALL <span class="brand-light">AI WORKSHOP</span></a>
+  <span class="topbar-caption">Oracle Generative AI <span class="separator">/</span> Enterprise AI</span>
+  <a class="topbar-cta" href="{{ '/downloads/kit-director.zip' | relative_url }}">↓ Kit del equipo</a>
+</header>
+<div class="site-grid">
+  <aside class="sidebar">
+    <p class="rail-label">TU RUTA A LA PARRILLA</p>
+    <nav aria-label="Navegación del workshop">
+      {% for item in site.data.navigation %}
+      <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active" aria-current="page"{% endif %}><span>{{ item.number }}</span>{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+    <div class="rail-note"><span class="status-dot"></span> EL RETO<p>Tres especialistas.<br>Un Director.<br>Tu estrategia.</p><span class="rail-note-small">El equipo decide cómo ganar.</span></div>
+  </aside>
+  <main id="contenido" tabindex="-1">
+    <header class="page-header">
+      <p class="eyebrow">{{ page.eyebrow | default: 'PIT WALL / LABORATORIO DE AGENTES' }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="lead">{{ page.lead }}</p>
+      <div class="header-line"><span>{{ page.caption | default: 'CONTEXTO → CRITERIO → DECISIÓN → ACCIÓN' }}</span><span aria-hidden="true">↗</span></div>
+    </header>
+    <article class="content">{{ content }}</article>
+    {% if page.next_url %}<a class="next-page" href="{{ page.next_url | relative_url }}"><span>SIGUIENTE PASO<strong>{{ page.next_title }}</strong></span><span aria-hidden="true">→</span></a>{% endif %}
+  </main>
+  <aside class="toc-rail" aria-label="Temas de esta página"><p class="rail-label">EN ESTA PÁGINA</p><nav id="page-toc"></nav><div class="session-note">WORKSHOP MODE<span>Aprende. Ajusta. Prueba.</span></div></aside>
+</div>
+<footer class="footer"><span>PIT WALL <b>/</b> Workshop de agentes AI</span><span>Material educativo · Primera edición · 2026</span></footer>
+</body>
+</html>

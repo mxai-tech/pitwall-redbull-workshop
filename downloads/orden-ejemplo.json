@@ -1,0 +1,12 @@
+{
+  "tipo": "orden",
+  "ventana": 5,
+  "ritmo": "ATAQUE",
+  "energia": "BOOST",
+  "pits": {
+    "compuesto": "MEDIO",
+    "vuelta": 2
+  },
+  "radio": "Box en dos vueltas por medios. Empuja ahora.",
+  "razonamiento": "Buscamos el undercut antes de que caigan las llantas."
+}

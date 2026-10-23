@@ -1,0 +1,24 @@
+title: Pit Wall · Workshop de agentes AI
+description: Construye tu Agente Director con Oracle Generative AI y Enterprise AI.
+lang: es-MX
+url: ""
+baseurl: /pitwall-redbull-workshop
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+exclude:
+  - README.md
+  - docs
+  - kit-director
+  - scripts
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - tests

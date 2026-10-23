@@ -1,0 +1,12 @@
+*
+!requirements-director.txt
+!app.py
+!director/
+!director/*.py
+!director/ficha.yaml
+**/__pycache__/
+**/*.pyc
+.env
+.env.*
+.venv/
+.git/
