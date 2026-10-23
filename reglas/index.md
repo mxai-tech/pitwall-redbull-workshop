@@ -7,7 +7,7 @@ next_title: Prepara tu equipo y conecta OCI
 ---
 ## La misión
 
-Tu equipo es un muro de estrategia o "pit wall" en una simulación de Formula 1, a **71 vueltas** en el Autódromo Hermanos Rodríguez. El servidor conduce el auto. Tu Director elige el plan; compite contra otros equipos y contra un **ghost simulado** basado en la estrategia de México 2022. El ghost es una referencia del juego, no una reproducción exacta de la carrera real.
+Tu equipo es un muro de estrategia o "pit wall" en una simulación de Formula 1, a **71 vueltas** en el Autódromo Hermanos Rodríguez. El servidor conduce el auto. Tu Director elige el plan y compite únicamente contra los equipos participantes del workshop.
 
 ## Cuándo decides
 
@@ -64,11 +64,11 @@ Son reglas de la simulación del workshop. Los coeficientes pueden ajustarse ant
 
 ## Cómo se gana
 
+La competición se disputa entre los equipos participantes. Los puntos de cada carrera se asignan según la posición de llegada, la vuelta más rápida, el premio de radio y los silencios. Los Momentos aportan puntos de clasificación al torneo.
+
 | Concepto | Puntos |
 | --- | --- |
 | Posición en un heat de cuatro equipos | 25 · 18 · 15 · 12 |
-| Terminar antes que el ghost | +10 |
-| Terminar igual o hasta 5 s después del ghost | +5 |
 | Vuelta más rápida | +3 |
 | Premio de radio | 0 a 5, asignados por la organización con voto del público |
 | Cada silencio | −2 |

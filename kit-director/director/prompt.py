@@ -54,7 +54,7 @@ def usuario_ventana(ventana: dict, agentes: dict) -> str:
         return json.dumps(x, ensure_ascii=False, separators=(",", ":"))
     return (f"VENTANA DE RADIO {ventana.get('ventana')} · vuelta {ventana.get('vuelta')} de "
             f"{ventana.get('vueltas_totales')} · motivos: {', '.join(ventana.get('motivos', []))}\n\n"
-            f"TELEMETRÍA:\n{j({k: ventana.get(k) for k in ('coche', 'pista', 'clasificacion', 'delta_ghost_s')})}\n\n"
+            f"TELEMETRÍA:\n{j({k: ventana.get(k) for k in ('coche', 'pista', 'clasificacion')})}\n\n"
             f"AGENTE 1 · LLANTAS:\n{j(agentes.get('llantas'))}\n\n"
             f"AGENTE 2 · PISTA:\n{j(agentes.get('pista'))}\n\n"
             f"AGENTE 3 · ESTRATEGIA:\n{j(agentes.get('estrategia'))}\n\n"

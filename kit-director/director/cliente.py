@@ -130,8 +130,7 @@ class Director:
                             elif t == "fin_carrera":
                                 mio = next((r for r in msg.get("resultados", []) if r["equipo"] == self.equipo), {})
                                 pts = (msg.get("puntos") or {}).get(self.equipo, {}).get("total")
-                                self.log(f"{VERDE}{NEGRITA}META: P{mio.get('posicion')} · {pts} puntos · "
-                                         f"vs ghost {mio.get('vs_fantasma_s')} s{FIN}")
+                                self.log(f"{VERDE}{NEGRITA}META: P{mio.get('posicion')} · {pts} puntos{FIN}")
                             elif t == "error":
                                 self.log(f"{ROJO}error: {msg.get('errores')}{FIN}")
                             if coro is not None:

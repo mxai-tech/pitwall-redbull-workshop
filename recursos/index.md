@@ -58,7 +58,6 @@ Las referencias técnicas se revisaron el 22 de octubre de 2026. Confirma modelo
 | Undercut | Parar antes que un rival para aprovechar llantas nuevas |
 | Acantilado | Umbral de edad efectiva a partir del cual aumenta la degradación |
 | Gap | Diferencia de tiempo respecto a otro auto |
-| Ghost | Referencia simulada para comparar la estrategia |
 | Respaldo | Orden o política que evita depender de una respuesta tardía o inválida |
 
 ## Antes de tomar la salida
