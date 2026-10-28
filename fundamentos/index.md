@@ -7,7 +7,7 @@ next_title: Conoce la arquitectura del muro
 ---
 ## Oracle Generative AI
 
-OCI Generative AI ofrece modelos administrados para construir aplicaciones de IA. En este taller usaremos **OCI Responses API** para enviar al modelo la situación de carrera y recibir la propuesta del Director. El modelo y la región los confirma la organización.
+OCI Generative AI ofrece modelos administrados para construir aplicaciones de IA. En este taller usaremos **OCI Responses API** para enviar al modelo la situación de carrera y recibir la propuesta del Director. Usaremos `openai.gpt-oss-120b` en `us-chicago-1`, con la API key entregada por la organización.
 
 Una buena petición une tres piezas: **instrucciones** (rol y personalidad), **contexto** (telemetría y especialistas) y **formato de salida** (la orden JSON). El modelo propone; la aplicación comprueba la respuesta antes de actuar.
 
@@ -24,7 +24,7 @@ Oracle presenta OCI Generative AI como su plataforma Enterprise AI. Para nuestro
 | Herramientas | Consultan Llantas, Pista y Estrategia |
 | Contexto | Reúne la telemetría y las tres lecturas actuales |
 | Validación | Comprueba ritmo, energía y parada |
-| Acción | Envía la orden al servidor por WebSocket |
+| Acción | Devuelve al servidor la decisión del Director |
 | Evaluación | Compara resultado, fuente de la orden y tiempo de respuesta |
 
 Fuente: [Enterprise AI Agents en OCI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/agents.htm).
@@ -33,7 +33,7 @@ Fuente: [Enterprise AI Agents en OCI](https://docs.oracle.com/en-us/iaas/Content
 
 Esta API permite generar respuestas y construir flujos con herramientas. Su interfaz compatible con el SDK de OpenAI se conecta al endpoint de OCI; el modelo se ejecuta en Oracle Cloud. La autenticación y los recursos pertenecen a OCI.
 
-El kit usa `client.responses.create(...)`. Cada ventana envía instrucciones y lecturas nuevas, sin depender de memoria de conversaciones. La aplicación consulta siempre los tres especialistas en paralelo y entrega sus resultados al modelo: **en esta primera versión, el LLM no elige qué herramientas invocar**.
+En los ejercicios de Responses API, las instrucciones y el contexto se envían al modelo para obtener una respuesta. El Director local recibe la telemetría de carrera y obtiene del mismo servidor las lecturas de los tres especialistas antes de consultar el modelo.
 
 Fuente: [OCI Responses API](https://docs.oracle.com/en-us/iaas/Content/generative-ai/responses-api.htm).
 
@@ -44,11 +44,11 @@ Fuente: [OCI Responses API](https://docs.oracle.com/en-us/iaas/Content/generativ
 - **Predicción y certeza:** un tiempo esperado o un radar de lluvia no garantizan el resultado.
 - **Respuesta y ejecución:** escribir “entramos a pits” en el radio no programa la parada; el campo `pits` sí.
 
-## Responses API y Applications trabajan juntos
+## Tu proceso local y OCI
 
-Responses API ejecuta la inferencia; **Applications aloja tu código**. En este taller usarás ambos: desarrollarás el Director, construirás su imagen Docker, la subirás a OCIR y crearás un deployment desde OCI Console. El servicio HTTP del kit mantiene el canal con el servidor de carrera.
+El Director corre en tu computadora; el modelo se ejecuta en OCI. El cliente del kit usa Responses API con API key sobre el endpoint `/20231130/actions/v1`. La organización entrega los accesos: en este taller no despliegas el Director en Applications.
 
-Fuente: [Desplegar agentes en OCI Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/deploying-agents.htm).
+Fuente: [API keys de OCI Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/api-keys.htm).
 
 ## Más allá del primer Director
 

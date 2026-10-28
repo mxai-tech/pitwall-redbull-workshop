@@ -2,8 +2,8 @@
 title: "Las reglas del juego"
 lead: "Gana con decisiones consistentes: administra llantas y batería, responde a tiempo y adapta tu plan cuando cambie la pista."
 eyebrow: 03 / REGLAMENTO DEL WORKSHOP
-next_url: /preparacion/
-next_title: Prepara tu equipo y conecta OCI
+next_url: /director/
+next_title: Define la personalidad de tu Director
 ---
 ## La misión
 
