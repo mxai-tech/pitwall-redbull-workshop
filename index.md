@@ -1,7 +1,7 @@
 ---
 title: "Tu estrategia.<br>Tu agente. Tu carrera."
 eyebrow: PIT WALL / ORACLE AI WORKSHOP
-lead: "Construye un Director que escuche a sus especialistas, tome decisiones con personalidad y lleve a tu equipo hasta la meta desde OCI Applications."
+lead: "Construye un Director que escuche a sus especialistas, tome decisiones con personalidad y lleve a tu equipo hasta la meta con un proceso local conectado a OCI."
 caption: "AUTÓDROMO HERMANOS RODRÍGUEZ / 71 VUELTAS / UN MURO CON CRITERIO"
 next_url: /fundamentos/
 next_title: Entiende las piezas de Oracle AI
@@ -23,7 +23,7 @@ next_title: Entiende las piezas de Oracle AI
 
 El taller dura **90–120 minutos**. Los participantes trabajan con el entorno del workshop y concentran su esfuerzo en la personalidad, las instrucciones y las decisiones del Director.
 
-La ruta recorre fundamentos, reglas, diseño del Director, pruebas y competición. La distribución de actividades se ajustará a la nueva dinámica del taller.
+La ruta recorre fundamentos, reglas, diseño del Director, pruebas y competición. El Laboratorio desarrolla la secuencia completa: entorno local, configuración, prueba del LLM, personalización y conexión a carrera.
 
 ## Tu ruta de trabajo
 
@@ -31,6 +31,6 @@ La ruta recorre fundamentos, reglas, diseño del Director, pruebas y competició
 
 ## Qué construye tu equipo
 
-Definirás la personalidad y las instrucciones de tu Director, observarás sus decisiones y mejorarás tu estrategia. La organización proporciona el entorno del taller, los especialistas y el servidor de carrera. La aplicación permite registrar el equipo con la URL de su Director y comprobar la conexión antes de participar.
+Definirás la personalidad y las instrucciones de tu Director, observarás sus decisiones y mejorarás tu estrategia. La organización proporciona la URL del servidor, el ID y token del equipo y la API key de OCI. Ejecutarás el Director como un proceso local de Python; el kit obtiene las recomendaciones de los especialistas desde el servidor de carrera.
 
 <div class="notice"><strong>Tu objetivo es mejorar las decisiones del equipo.</strong> Usa esta guía para entender las señales de los especialistas, explorar tu criterio y evaluar lo que ocurre en carrera.</div>

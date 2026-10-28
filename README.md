@@ -7,8 +7,9 @@ El proyecto de carrera de referencia está en `pitwall-redbull`, rama `tests`.
 
 Fundamentos → arquitectura → reglas → Director → laboratorio → recursos.
 Las páginas de preparación local y despliegue se retiraron. Los participantes
-trabajan en el entorno del taller; la ruta no exige Docker ni desarrollo local.
-El registro de carrera recibe la URL del Director y exige una prueba de conexión.
+trabajan localmente con Python; la ruta no exige Docker ni un despliegue en OCI.
+La organización entrega servidor, ID, token de equipo y API key del LLM.
+Laboratorio contiene la secuencia completa para configurar y ejecutar el proceso.
 
 `kit-director/` y `downloads/kit-director.zip` conservan material de la dinámica
 anterior para revisión posterior. El ZIP se excluye del sitio publicado y no se
@@ -59,3 +60,24 @@ El 27/10/2026 se revisaron README, guía de equipos y plantilla HTTP de la rama
 ajustaron navegación, enlaces y requisitos contradictorios de las páginas restantes.
 La adaptación completa de reglas, ejercicios y materiales continuará por etapas.
 El historial de las decisiones anteriores está en `docs/REVISION.md`.
+
+## Ejecución local confirmada
+
+El recorrido actual usa el developer kit público `https://github.com/mxai-tech/kit-pitwall`,
+revisión consultada `75724a800d7d7208c84027145d8314fbc89562a3`. La inferencia usa API key
+sobre `/20231130/actions/v1` en Chicago y el modelo `openai.gpt-oss-120b`. No exige
+proyecto ni perfil IAM. `downloads/agente.py` refleja ese cliente, con 120b como
+valor predeterminado del workshop.
+
+`downloads/ejecutar_director.py` carga el `.env` contiguo, inicia `Agente`, espera su
+tarea y cierra recursos al salir. `downloads/probar_llm.py` comprueba el acceso al
+modelo antes de abrir la conexión de carrera. Ambos requieren `python-dotenv`,
+que el laboratorio instala expresamente además de las dependencias del kit.
+
+El proceso de carrera conserva el WebSocket saliente y las tres consultas HTTP
+internas ya implementadas en el kit. Las rutas se verificaron contra el servidor
+y no se muestran en las instrucciones para participantes. No se solicita URL
+de invocación, publicación en OCIR ni registro de una aplicación hospedada.
+
+La prueba real de inferencia y carrera requiere las credenciales del evento;
+las comprobaciones automatizadas usan transporte simulado y claves ficticias.

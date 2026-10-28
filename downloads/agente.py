@@ -55,7 +55,7 @@ FICHA = {
 def validar_entorno():
     """Valida las variables del workshop y devuelve la ficha de personalidad."""
     e = os.environ
-    nombres = ("EQUIPO", "TOKEN", "SERVIDOR", "OCI_GENAI_API_KEY", "OCI_GENAI_PROJECT_ID")
+    nombres = ("EQUIPO", "TOKEN", "SERVIDOR", "OCI_GENAI_API_KEY")
     for nombre in nombres:
         if not e.get(nombre, "").strip():
             raise ValueError(f"Falta la variable {nombre}")
@@ -68,13 +68,11 @@ def validar_entorno():
     except ValueError:
         raise ValueError("Puerto de SERVIDOR inválido") from None
     region = e.get("OCI_GENAI_REGION", "us-chicago-1")
-    modelo = e.get("OCI_GENAI_MODEL", "openai.gpt-oss-20b")
+    modelo = e.get("OCI_GENAI_MODEL", "openai.gpt-oss-120b")
     if not re.fullmatch(r"[a-z]{2}-[a-z0-9]+-[0-9]+", region):
         raise ValueError("Región OCI inválida")
     if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._-]+", modelo):
         raise ValueError("Identificador de modelo inválido")
-    if not e["OCI_GENAI_PROJECT_ID"].startswith("ocid1.generativeaiproject."):
-        raise ValueError("OCI_GENAI_PROJECT_ID debe identificar un proyecto Generative AI")
     try:
         ficha = json.loads(e["DIRECTOR_FICHA_JSON"]) if e.get("DIRECTOR_FICHA_JSON") else copy.deepcopy(FICHA)
     except ValueError:
@@ -100,11 +98,10 @@ def validar_entorno():
 class ModeloOCI:
     """Única conexión LLM: OCI Generative AI por API key y Responses API."""
     def __init__(self):
-        self.nombre = os.getenv("OCI_GENAI_MODEL", "openai.gpt-oss-20b")
+        self.nombre = os.getenv("OCI_GENAI_MODEL", "openai.gpt-oss-120b")
         region = os.getenv("OCI_GENAI_REGION", "us-chicago-1")
-        url_oci = f"https://inference.generativeai.{region}.oci.oraclecloud.com/openai/v1"
+        url_oci = f"https://inference.generativeai.{region}.oci.oraclecloud.com/20231130/actions/v1"
         self.cliente = AsyncOpenAI(api_key=os.environ["OCI_GENAI_API_KEY"],
-                                  project=os.environ["OCI_GENAI_PROJECT_ID"],
                                   base_url=url_oci, timeout=7, max_retries=0)
 
     async def consultar(self, sistema, usuario):

@@ -8,7 +8,7 @@ next_title: Aprende las reglas de la carrera
 ---
 ## El ciclo de una ventana
 
-<div class="architecture"><div class="architecture-node server-node"><span>SERVIDOR DE CARRERA</span><strong>Abre una ventana y envía telemetría</strong><small>Llamada HTTP · telemetría, especialistas y límite de tiempo</small></div><div class="connector" aria-hidden="true">↓</div><div class="card-grid three"><div class="mini-card"><span>AGENTE 01</span><h3>Llantas</h3><p>Desgaste, edad efectiva, acantilado y consejo.</p></div><div class="mini-card"><span>AGENTE 02</span><h3>Pista</h3><p>Clima, radar, Safety Car, gaps y rivales.</p></div><div class="mini-card"><span>AGENTE 03</span><h3>Estrategia</h3><p>Tres opciones con tiempo esperado y riesgo.</p></div></div><div class="connector" aria-hidden="true">↓ LECTURAS INCLUIDAS EN LA LLAMADA ↓</div><div class="architecture-node director-node"><span>TU AGENTE DIRECTOR + OCI RESPONSES API</span><strong>Contexto + personalidad → propuesta JSON</strong><small>Normaliza · valida · usa respaldo si hace falta</small></div><div class="connector" aria-hidden="true">↓ RESPUESTA JSON ↓</div><div class="architecture-node server-node"><strong>El servidor valida y aplica la orden</strong><small>Nueva telemetría → siguiente decisión</small></div></div>
+<div class="architecture"><div class="architecture-node server-node"><span>SERVIDOR DE CARRERA</span><strong>Abre una ventana y envía telemetría</strong><small>Conexión del Director local · telemetría y límite de tiempo</small></div><div class="connector" aria-hidden="true">↓</div><div class="card-grid three"><div class="mini-card"><span>AGENTE 01</span><h3>Llantas</h3><p>Desgaste, edad efectiva, acantilado y consejo.</p></div><div class="mini-card"><span>AGENTE 02</span><h3>Pista</h3><p>Clima, radar, Safety Car, gaps y rivales.</p></div><div class="mini-card"><span>AGENTE 03</span><h3>Estrategia</h3><p>Tres opciones con tiempo esperado y riesgo.</p></div></div><div class="connector" aria-hidden="true">↓ RECOMENDACIONES OBTENIDAS POR EL DIRECTOR ↓</div><div class="architecture-node director-node"><span>TU AGENTE DIRECTOR + OCI RESPONSES API</span><strong>Contexto + personalidad → propuesta JSON</strong><small>Normaliza · valida · usa respaldo si hace falta</small></div><div class="connector" aria-hidden="true">↓ ORDEN JSON ENVIADA AL SERVIDOR ↓</div><div class="architecture-node server-node"><strong>El servidor valida y aplica la orden</strong><small>Nueva telemetría → siguiente decisión</small></div></div>
 
 ## Qué aportan los especialistas
 
@@ -22,13 +22,24 @@ Los tres están preconstruidos en el servidor como servicios deterministas. No s
 
 ## Cómo se conecta el equipo
 
-La aplicación de carrera llama a la URL del Director mediante HTTP. En cada ventana envía la telemetría, las lecturas de los especialistas y el formato esperado de respuesta. El Director devuelve su decisión al servidor de carrera.
+El Director se ejecuta como un proceso de Python en tu computadora. Abre una conexión saliente al servidor de carrera usando la URL, el ID y token entregados por la organización.
 
-Durante el registro, el equipo proporciona la URL de su Director y usa **Probar conexión**. Esta prueba comprueba que la aplicación puede llamar al agente y entender su respuesta antes de aceptar el registro.
+En cada ventana recibe telemetría y obtiene del servidor las recomendaciones de Llantas, Pista y Estrategia. Esa comunicación está implementada dentro del kit: no tienes que conocer ni configurar las rutas de los auxiliares.
+
+El Director combina las lecturas con tu ficha y el prompt, consulta `openai.gpt-oss-120b` en OCI mediante Responses API y devuelve la orden al servidor de carrera. Si la consulta falla o tarda demasiado, activa el respaldo del kit.
+
+## Dos accesos distintos
+
+| Acceso | Para qué se usa |
+| --- | --- |
+| URL de carrera, ID y token del equipo | Conectar el Director y obtener telemetría y recomendaciones |
+| API key de OCI | Consultar el modelo por Responses API |
+
+La API key del LLM no reemplaza el token de carrera. Ambos accesos los proporciona la organización antes de iniciar.
 
 ## El entorno del taller
 
-La organización proporciona el entorno para trabajar con el Director. Los participantes definen su personalidad e instrucciones, realizan pruebas y observan sus decisiones durante la competición.
+Mantén la terminal del Director abierta durante la carrera y evita ejecutar dos procesos con el mismo ID. No necesitas publicar una URL de tu laptop ni desplegar una aplicación en OCI.
 
 ## Qué puedes cambiar
 

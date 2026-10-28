@@ -28,7 +28,6 @@ ORDER = {'ritmo': 'ATAQUE', 'energia': 'BOOST', 'pits': {'compuesto': 'MEDIO', '
          'radio': 'Box en dos vueltas', 'razonamiento': 'Llantas al límite'}
 ENV = {'OCI_GENAI_REGION':'us-chicago-1', 'OCI_GENAI_MODEL':'modelo-prueba',
        'OCI_GENAI_API_KEY':'clave-ficticia',
-       'OCI_GENAI_PROJECT_ID':'ocid1.generativeaiproject.oc1.fake',
        'EQUIPO':'equipo-prueba', 'TOKEN':'token-ficticio', 'SERVIDOR':'wss://carrera.invalid'}
 
 
@@ -62,8 +61,9 @@ class DeveloperKitResponsesTests(unittest.IsolatedAsyncioTestCase):
                 await model.cerrar()
         self.assertEqual(len(self.requests), 1)
         request = self.requests[0]
-        self.assertEqual(str(request.url), 'https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/openai/v1/responses')
-        self.assertEqual(request.headers['OpenAI-Project'], ENV['OCI_GENAI_PROJECT_ID'])
+        self.assertEqual(str(request.url), 'https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions/v1/responses')
+        self.assertNotIn('OpenAI-Project', request.headers)
+        self.assertEqual(request.headers['Authorization'], 'Bearer clave-ficticia')
         self.assertEqual(json.loads(request.content), {'model':'modelo-prueba', 'instructions':'sistema',
             'input':'usuario', 'max_output_tokens':2048, 'store':False})
 
