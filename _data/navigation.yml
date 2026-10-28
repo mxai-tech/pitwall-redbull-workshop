@@ -10,18 +10,12 @@
 - title: Reglas del juego
   url: /reglas/
   number: "03"
-- title: Prepara tu equipo
-  url: /preparacion/
-  number: "04"
 - title: Diseña tu Director
   url: /director/
-  number: "05"
+  number: "04"
 - title: Laboratorio
   url: /laboratorio/
-  number: "06"
-- title: Docker y Applications
-  url: /despliegue/
-  number: "07"
+  number: "05"
 - title: Recursos
   url: /recursos/
-  number: "08"
+  number: "06"

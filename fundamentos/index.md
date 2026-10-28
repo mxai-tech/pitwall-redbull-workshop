@@ -24,7 +24,7 @@ Oracle presenta OCI Generative AI como su plataforma Enterprise AI. Para nuestro
 | Herramientas | Consultan Llantas, Pista y Estrategia |
 | Contexto | Reúne la telemetría y las tres lecturas actuales |
 | Validación | Comprueba ritmo, energía y parada |
-| Acción | Envía la orden al servidor por WebSocket |
+| Acción | Devuelve al servidor la decisión del Director |
 | Evaluación | Compara resultado, fuente de la orden y tiempo de respuesta |
 
 Fuente: [Enterprise AI Agents en OCI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/agents.htm).
@@ -33,7 +33,7 @@ Fuente: [Enterprise AI Agents en OCI](https://docs.oracle.com/en-us/iaas/Content
 
 Esta API permite generar respuestas y construir flujos con herramientas. Su interfaz compatible con el SDK de OpenAI se conecta al endpoint de OCI; el modelo se ejecuta en Oracle Cloud. La autenticación y los recursos pertenecen a OCI.
 
-El kit usa `client.responses.create(...)`. Cada ventana envía instrucciones y lecturas nuevas, sin depender de memoria de conversaciones. La aplicación consulta siempre los tres especialistas en paralelo y entrega sus resultados al modelo: **en esta primera versión, el LLM no elige qué herramientas invocar**.
+En los ejercicios de Responses API, las instrucciones y el contexto se envían al modelo para obtener una respuesta. En la dinámica de carrera del workshop, el servidor envía al Director la telemetría y las lecturas de los tres especialistas en cada llamada.
 
 Fuente: [OCI Responses API](https://docs.oracle.com/en-us/iaas/Content/generative-ai/responses-api.htm).
 
@@ -46,7 +46,7 @@ Fuente: [OCI Responses API](https://docs.oracle.com/en-us/iaas/Content/generativ
 
 ## Responses API y Applications trabajan juntos
 
-Responses API ejecuta la inferencia; **Applications aloja tu código**. En este taller usarás ambos: desarrollarás el Director, construirás su imagen Docker, la subirás a OCIR y crearás un deployment desde OCI Console. El servicio HTTP del kit mantiene el canal con el servidor de carrera.
+Responses API permite consultar modelos; **Applications aloja aplicaciones de agentes**. El entorno del taller proporciona la infraestructura necesaria. Tu trabajo se centra en el criterio del Director y la interpretación de sus decisiones.
 
 Fuente: [Desplegar agentes en OCI Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/deploying-agents.htm).
 

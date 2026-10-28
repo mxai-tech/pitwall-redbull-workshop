@@ -13,6 +13,7 @@ defaults:
     values:
       layout: page
 exclude:
+  - downloads/kit-director.zip
   - README.md
   - docs
   - kit-director
